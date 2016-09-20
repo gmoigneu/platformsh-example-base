@@ -23,9 +23,8 @@ class Example {
 	}
 
   public function connect() {
-    $db = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8mb4', $this->username, $this->password, array(PDO::ATTR_EMULATE_PREPARES => false));
+    $db = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8mb4', $this->user, $this->password, array(PDO::ATTR_EMULATE_PREPARES => false));
     try {
-      $db->query();
       $stmt = $db->prepare("SHOW VARIABLES WHERE Variable_Name = 'version';");
       $stmt->execute();
       $row = $stmt->fetch();
