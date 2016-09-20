@@ -10,16 +10,16 @@ class Example {
       // We're not on platform.sh
       return;
     }
-		// This is where we get the relationships of our application dynamically
+    // This is where we get the relationships of our application dynamically
     // from Platform.sh
-		$relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
-		// We are using the first relationship called "database" found in your
-		// relationships. Note that you can call this relationship as you wish
-		// in you .platform.app.yaml file, but 'database' is a good name.
-		$this->db = $relationships['database'][0]['path'];
-		$this->user = $relationships['database'][0]['username'];
-		$this->password = $relationships['database'][0]['password'];
-		$this->host = $relationships['database'][0]['host'];
+    $relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
+    // We are using the first relationship called "database" found in your
+    // relationships. Note that you can call this relationship as you wish
+    // in you .platform.app.yaml file, but 'database' is a good name.
+    $this->db = $relationships['database'][0]['path'];
+    $this->user = $relationships['database'][0]['username'];
+    $this->password = $relationships['database'][0]['password'];
+    $this->host = $relationships['database'][0]['host'];
   }
 
   public function connect() {
