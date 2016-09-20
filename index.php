@@ -1,15 +1,15 @@
 <?php
 class Example {
   public $host = '127.0.0.1';
-	public $user = 'root';
-	public $password = 'root';
-	public $db = 'ldc';
+  public $user = 'root';
+  public $password = 'root';
+  public $db = 'ldc';
 
   public function __construct() {
-		if (empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
+    if (empty($_ENV['PLATFORM_RELATIONSHIPS'])) {
       // We're not on platform.sh
-			return;
-		}
+      return;
+    }
 		// This is where we get the relationships of our application dynamically
     // from Platform.sh
 		$relationships = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), TRUE);
@@ -20,7 +20,7 @@ class Example {
 		$this->user = $relationships['database'][0]['username'];
 		$this->password = $relationships['database'][0]['password'];
 		$this->host = $relationships['database'][0]['host'];
-	}
+  }
 
   public function connect() {
     $db = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8mb4', $this->user, $this->password, array(PDO::ATTR_EMULATE_PREPARES => false));
